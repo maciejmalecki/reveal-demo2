@@ -8,7 +8,8 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/night.css">
+		<link rel="stylesheet" href="custom.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,8 +17,117 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>RevealJS</h1>
+					<h3 class="cyan">Do your slides like a pro</h3>
+					<p class="pink">Maciej Małecki, Craftsmanship, 2022.</p>
+				</section>
+				<section>
+					<img src="img/spy.png" alt="Spy" class="r-stretch">
+				</section>
+				<section>
+					<p class="r-fit-text">REALLY?!</p>
+				</section>
+				<section>
+					<section>
+						<h3>We go vertical</h3>
+					</section>
+					<section>
+						<h4>What is the problem?</h4>
+						<p class="r-fit-text fragment">WYSIWYG!</p>
+					</section>
+					<section>
+						<img src="img/mac.png" alt="">
+					</section>
+					<section>
+						<img src="img/jobs.jpg" alt="">
+					</section>
+				</section>
+				<section>
+					<div class="r-hstack gal-l">
+						<img src="img/hello.excalidraw.png" alt="">
+						<div>
+							<ul>
+								<li>Let's have</li>
+								<li>some nice</li>
+								<li>picture</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section data-markdown data-separator-vertical="^--$">
+					<script type="text/template">
+					# now we go markdown
+					---
+					## here we can start
+
+					writing our slides easily<!-- .element class="pink"-->
+					---
+					## vertical slides
+					--
+					<p class="r-fit-text">are possible</p>
+					---
+					### lists
+
+					Both kind of lists are available: bulleted and numbered.
+
+					They are easier to work with than in plain `html`.
+
+					* first
+					* second<!-- .element class="fragment pink"-->
+					* third<!-- .element class="fragment cyan"-->
+					--
+					1. first
+					1. second
+					1. third
+					---
+					### Serious architecture is coming
+					![Arch](img/hello.excalidraw.png)
+					---
+					### Even more serious architecture
+					![UML](img/uml.drawio.svg)<!-- .element class="drawing"-->
+					---
+					<!-- .slide: data-background="img/bomba.png" data-background-opacity="0.6"-->
+					<p class="r-fit-text">tępe...</p>
+					---
+					<div class="r-hstack gap-l">
+						<img src="img/bomba.png" alt="">
+						<div>
+							<ul>
+								<li>Kapitan gwiezdnej floty</li>
+								<li>umie w gładzie</li>
+							</ul>
+						</div>
+					</div>
+					---
+					### source code
+					```kotlin[|2-5|6-8|10|11|12|13-14]
+					private fun getProcessor(inputByteStream: InputByteStream): CTMProcessor {
+						val id = inputByteStream
+									.read(3)
+									.map { it.toChar() }
+									.joinToString(separator = "")
+						if (id != "CTM") {
+						  throw InvalidCTMFormatException("CTM id is missing")
+						}
+						return when (val version = inputByteStream.readByte().toInt()) {
+						  5 -> CTM5Processor(this@CharpadProcessor)
+						  6 -> CTM6Processor(this@CharpadProcessor)
+						  7 -> CTM7Processor(this@CharpadProcessor)
+						  8, 82 ->
+							  CTM8Processor(this@CharpadProcessor, version, ctm8PrototypeCompatibility)
+						  else -> throw InvalidCTMFormatException("Unsupported version: $version")
+						}
+					}
+					```
+					---
+					### Matematyka
+
+					`$$
+					2\int_{-r}^r\sqrt{r^2 - x^2}dx = \pi r^2
+					$$`
+					</script>
+				</section>
 			</div>
 		</div>
 
@@ -25,15 +135,17 @@
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/math/math.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
+				width: 1200,
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealMath ]
 			});
 		</script>
 	</body>
